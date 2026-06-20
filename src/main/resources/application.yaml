@@ -9,7 +9,7 @@ spring:
       chat:
           model: llama-3.1-8b-instant # Or mixtral-8x7b-32768, or other Groq models
           max-completion-tokens: 300
-          temperature: 0.3 #0.0 -> Same answer almost always,0.7 -> Balanced,1.5 -> Very creative,2.0 -> Can become nonsense
+          temperature: 0.3
 
 app:
   crossOrigin:
@@ -17,4 +17,5 @@ app:
 
 logging:
   level:
-    org.springframework.ai: DEBUG
+    com.vamshi.medicalagentbot: INFO
+    org.springframework.ai: warn
