@@ -28,6 +28,7 @@ public class ChatController {
     @PostMapping(produces = "text/event-stream")
     public Flux<String> chat(@RequestBody ChatRequest chatRequest){
 
+        System.out.println("Request Received:");
         return chatClient.prompt()
                 .system(systemPrompt)
                 .user(chatRequest.message())

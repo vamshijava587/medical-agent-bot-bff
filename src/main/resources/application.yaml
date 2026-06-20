@@ -3,8 +3,9 @@ spring:
     name: medical-agent-bot-bff
 
   ai:
-    ollama:
-      base-url: http://localhost:11434
+    openai:
+      api-key: ${GROQ_API_KEY} # Replace with your actual Groq API Key or set as environment variable
+      base-url: https://api.groq.com/openai/v1
       chat:
-        model: llama3.2
-        temperature: 0.7 #0.0 -> Same answer almost always,0.7 -> Balanced,1.5 -> Very creative,2.0 -> Can become nonsense
+          model: llama-3.3-70b-versatile # Or mixtral-8x7b-32768, or other Groq models
+          temperature: 0.7 #0.0 -> Same answer almost always,0.7 -> Balanced,1.5 -> Very creative,2.0 -> Can become nonsense
