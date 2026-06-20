@@ -7,9 +7,14 @@ spring:
       api-key: ${GROQ_API_KEY} # Replace with your actual Groq API Key or set as environment variable
       base-url: https://api.groq.com/openai/v1
       chat:
-          model: llama-3.3-70b-versatile # Or mixtral-8x7b-32768, or other Groq models
-          temperature: 0.7 #0.0 -> Same answer almost always,0.7 -> Balanced,1.5 -> Very creative,2.0 -> Can become nonsense
+          model: llama-3.1-8b-instant # Or mixtral-8x7b-32768, or other Groq models
+          max-completion-tokens: 300
+          temperature: 0.3 #0.0 -> Same answer almost always,0.7 -> Balanced,1.5 -> Very creative,2.0 -> Can become nonsense
 
 app:
   crossOrigin:
     allowed-origins: ${UI_URL}
+
+logging:
+  level:
+    org.springframework.ai: DEBUG

@@ -19,10 +19,10 @@ public class ChatController {
     private final String[] allowedOrigins;
 
     public ChatController(
-            ChatClient.Builder chatClientBuilder,
+            ChatClient chatClient,
             @Value("classpath:/prompts/systemmessage.st") Resource systemPromptResource,
             @Value("${app.crossOrigin.allowed-origins}") String[] allowedOrigins) throws IOException {
-        this.chatClient = chatClientBuilder.build();
+        this.chatClient = chatClient;
         this.systemPrompt = systemPromptResource.getContentAsString(StandardCharsets.UTF_8);
         this.allowedOrigins = allowedOrigins;
     }
