@@ -2,9 +2,13 @@ package com.vamshi.medicalagentbot.controller;
 
 import com.vamshi.medicalagentbot.model.ChatRequest;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 @RestController
 @RequestMapping("/chat")
@@ -12,16 +16,21 @@ import reactor.core.publisher.Mono;
 public class ChatController {
 
     private final ChatClient chatClient;
+    private final String systemPrompt;
 
-    public ChatController(ChatClient.Builder chatClient) {
-        this.chatClient = chatClient.build();
+    public ChatController(
+            ChatClient.Builder chatClientBuilder,
+            @Value("classpath:/prompts/systemmessage.st") Resource systemPromptResource) throws IOException {
+        this.chatClient = chatClientBuilder.build();
+        this.systemPrompt = systemPromptResource.getContentAsString(StandardCharsets.UTF_8);
     }
 
     @PostMapping(produces = "text/event-stream")
     public Flux<String> chat(@RequestBody ChatRequest chatRequest){
 
-        return chatClient
-                .prompt(chatRequest.message())
+        return chatClient.prompt()
+                .system(systemPrompt)
+                .user(chatRequest.message())
                 .stream()
                 .content();
     }
