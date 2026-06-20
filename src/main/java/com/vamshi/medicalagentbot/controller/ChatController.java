@@ -12,19 +12,22 @@ import java.nio.charset.StandardCharsets;
 
 @RestController
 @RequestMapping("/chat")
-@CrossOrigin(origins = "http://localhost:4200")
 public class ChatController {
 
     private final ChatClient chatClient;
     private final String systemPrompt;
+    private final String[] allowedOrigins;
 
     public ChatController(
             ChatClient.Builder chatClientBuilder,
-            @Value("classpath:/prompts/systemmessage.st") Resource systemPromptResource) throws IOException {
+            @Value("classpath:/prompts/systemmessage.st") Resource systemPromptResource,
+            @Value("${app.crossOrigin.allowed-origins}") String[] allowedOrigins) throws IOException {
         this.chatClient = chatClientBuilder.build();
         this.systemPrompt = systemPromptResource.getContentAsString(StandardCharsets.UTF_8);
+        this.allowedOrigins = allowedOrigins;
     }
 
+    @CrossOrigin(origins = "${app.crossOrigin.allowed-origins}")
     @PostMapping(produces = "text/event-stream")
     public Flux<String> chat(@RequestBody ChatRequest chatRequest){
         return chatClient.prompt()
