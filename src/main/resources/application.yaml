@@ -7,13 +7,15 @@ spring:
       api-key: ${GROQ_API_KEY} # Replace with your actual Groq API Key or set as environment variable
       base-url: https://api.groq.com/openai/v1
       chat:
-          model: llama-3.1-8b-instant # Or mixtral-8x7b-32768, or other Groq models
-          max-completion-tokens: 300
-          temperature: 0.3
+        model: llama-3.1-8b-instant # Or mixtral-8x7b-32768, or other Groq models
+        max-completion-tokens: 300
+        temperature: 0.3
 
-app:
-  crossOrigin:
-    allowed-origins: ${UI_URL}
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        model: llama3.2 # change to whatever model you've pulled locally
+        temperature: 0.3
 
 logging:
   level:
