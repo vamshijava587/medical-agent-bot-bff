@@ -13,7 +13,7 @@ import reactor.core.publisher.Flux;
 
 @RestController
 @RequestMapping("/chat")
-//@CrossOrigin(origins = "https://medical-agent-bot-ui.onrender.com/")
+@CrossOrigin(origins = "https://medical-agent-bot-ui.onrender.com/")
 public class MedicalAiAgentBotController {
 
     private final MedicalAiAgentBotService chatService;
