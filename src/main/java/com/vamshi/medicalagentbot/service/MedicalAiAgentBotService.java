@@ -22,10 +22,7 @@ public class MedicalAiAgentBotService {
             @Qualifier("openAiChatClient") ChatClient openAiChatClient,
             @Qualifier("ollamaChatClient") ChatClient ollamaChatClient,
             @Value("classpath:/prompts/systemmessage.st") Resource systemPromptResource) throws IOException {
-        this.chatClients = Map.of(
-                ModelType.OPENAI, openAiChatClient,
-                ModelType.OLLAMA, ollamaChatClient
-        );
+        this.chatClients = Map.of(ModelType.OPENAI, openAiChatClient, ModelType.OLLAMA, ollamaChatClient);
         this.systemPrompt = systemPromptResource.getContentAsString(StandardCharsets.UTF_8);
     }
 
