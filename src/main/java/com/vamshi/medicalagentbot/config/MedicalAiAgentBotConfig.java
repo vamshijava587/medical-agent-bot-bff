@@ -1,5 +1,6 @@
 package com.vamshi.medicalagentbot.config;
 
+import com.vamshi.medicalagentbot.advisory.TokenUsageLoggerAdvisor;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.vectorstore.QuestionAnswerAdvisor;
 import org.springframework.ai.ollama.OllamaChatModel;
@@ -35,7 +36,7 @@ public class MedicalAiAgentBotConfig {
                     .searchRequest(
                             SearchRequest.builder()
                                     .topK(5)
-                                    .similarityThreshold(0.7)
+                                    .similarityThreshold(0.4)
                                     .build()
                     )
                     .build();

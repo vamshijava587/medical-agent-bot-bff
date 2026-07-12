@@ -1,11 +1,10 @@
 spring:
   application:
     name: medical-agent-bot-bff
-
   autoconfigure:
     exclude:
-      - org.springframework.ai.autoconfigure.vectorstore.qdrant.QdrantVectorStoreAutoConfiguration
-      - org.springframework.ai.autoconfigure.openai.OpenAiEmbeddingAutoConfiguration  # stop OpenAI embedding bean
+      - org.springframework.ai.model.openai.autoconfigure.OpenAiEmbeddingAutoConfiguration
+      - org.springframework.ai.model.ollama.autoconfigure.OllamaEmbeddingAutoConfiguration
 
   ai:
     openai:
@@ -29,7 +28,6 @@ spring:
         collection-name: medical-agent-rag
         use-tls: true
         api-key: ${QDRANT_API_KEY}
-        initialize-schema: true
 
 medicalai:
   jina:

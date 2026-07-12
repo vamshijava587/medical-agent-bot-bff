@@ -1,4 +1,4 @@
-package com.vamshi.medicalagentbot.config;
+package com.vamshi.medicalagentbot.advisory;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

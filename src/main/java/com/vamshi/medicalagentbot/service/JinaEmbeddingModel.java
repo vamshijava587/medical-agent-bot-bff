@@ -38,7 +38,7 @@ public class JinaEmbeddingModel implements EmbeddingModel {
                 .bodyValue(body)
                 .retrieve()
                 .bodyToMono(JinaEmbeddingResponse.class)
-                .block(); // EmbeddingModel.call() is a synchronous contract method
+                .block();
 
         if (response == null || response.data() == null) {
             throw new IllegalStateException("Empty embedding response from Jina");
